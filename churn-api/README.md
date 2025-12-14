@@ -170,7 +170,6 @@ El modelo final se guarda usando joblib:
 
 churn_model.pkl
 
-
 Esto permite:
 
 Integrarlo en una API
@@ -178,6 +177,60 @@ Integrarlo en una API
 Usarlo en dashboards
 
 Ejecutarlo periódicamente en producción
+
+## API con FastAPI
+
+El modelo final se exportó y se consumió mediante una API REST.
+
+Endpoint principal
+
+POST /predict
+
+Ejemplo de request:
+{
+  "gender": "Male",
+  "SeniorCitizen": 0,
+  "Partner": "Yes",
+  "Dependents": "Yes",
+  "tenure": 60,
+  "PhoneService": "Yes",
+  "MultipleLines": "Yes",
+  "InternetService": "DSL",
+  "OnlineSecurity": "Yes",
+  "OnlineBackup": "Yes",
+  "DeviceProtection": "Yes",
+  "TechSupport": "Yes",
+  "StreamingTV": "No",
+  "StreamingMovies": "No",
+  "Contract": "Two year",
+  "PaperlessBilling": "No",
+  "PaymentMethod": "Bank transfer (automatic)",
+  "MonthlyCharges": 55.0,
+  "TotalCharges": 3300.0
+}
+
+Ejemplo de response:
+{
+  "churn_probability": 0.006,
+  "churn_prediction": 0,
+  "threshold": 0.5
+}
+
+Tecnologías usadas
+
+Python
+
+pandas, numpy
+
+scikit-learn
+
+matplotlib, seaborn
+
+FastAPI
+
+Uvicorn
+
+joblib
 
 ## Aplicación en un entorno real
 
@@ -209,7 +262,6 @@ Análisis de interpretabilidad (SHAP / feature importance)
 
 Monitoreo de performance y data drift
 
-Despliegue como API (FastAPI)
 
 ## Autor
 
